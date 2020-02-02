@@ -5,6 +5,10 @@ REPO=$2
 PAT=$3
 NAME=$4
 
+# if set this script will only run ./config.sh
+# it will not run the actions runner
+REGISTER_ONLY=$5
+
 cleanup() {
     token=$(curl -s -XPOST -H "authorization: token ${PAT}" \
         https://api.github.com/repos/${OWNER}/${REPO}/actions/runners/registration-token | jq -r .token)
@@ -21,6 +25,7 @@ token=$(curl -s -XPOST \
     --name ${NAME} \
     --work _work
 
-./run.sh --once
-
-cleanup
+if [ -z ${REGISTER_ONLY} ]; then
+    ./run.sh --once
+    cleanup
+fi
