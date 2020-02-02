@@ -21,6 +21,6 @@ token=$(curl -s -XPOST \
     --name ${NAME} \
     --work _work
 
-./run.sh 
+./run.sh --once
 
 cleanup
