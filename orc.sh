@@ -14,7 +14,7 @@ prev="${cur_dir}/prev"
 
 # make sure we have values for all our arguments
 [ -z ${PAT} ] || [ -z ${OWNER} ] || [ -z $REPO ] && {
-    echo "Incorrect usage, example: ./orc.sh personal-access-token wayofthepie some-repo"
+    echo "Incorrect usage, example: ./orc.sh personal-access-token owner some-repo"
     exit 1
 }
 
