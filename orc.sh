@@ -8,7 +8,9 @@
 PAT=$1
 OWNER=$2
 REPO=$3
-prev=prev
+
+cur_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+prev="${cur_dir}/prev"
 
 # make sure we have values for all our arguments
 [ -z ${PAT} ] || [ -z ${OWNER} ] || [ -z $REPO ] && {
