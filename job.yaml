@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {NAME}
+spec:
+  template:
+    spec:
+      containers:
+      - name: {NAME}
+        image: wayofthepie/actions-image
+        args: ["{OWNER}", "{REPO}", "{TOKEN}", "{NAME}"]
+      restartPolicy: Never
+  backoffLimit: 4

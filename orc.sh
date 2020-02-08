@@ -25,11 +25,11 @@ for check_status in $(curl -s \
 
     # if "check_status" is queued launch an action runner
     if [ "${check_status}" == "queued" ]; then
-        echo "Launching actions runner ..."
-        docker run -d --rm actions-image \
-            ${OWNER} \
-            ${REPO} \
-            ${PAT} \
-            $(uuidgen)
+        echo "Found check run request with status ${check_status}, launching job ..."
+        cat job.yaml \
+            | sed -r "s/\{NAME\}/$(uuidgen)/g; s/\{OWNER\}/${OWNER}/; s/\{REPO\}/${REPO}/; s/\{TOKEN\}/${PAT}/" \
+            | kubectl apply -f -
+    else
+        echo "Found check run request with status '${check_status}', nothing to do ..."
     fi
 done
