@@ -27,7 +27,7 @@ for check_status in $(curl -s \
     if [ "${check_status}" == "queued" ]; then
         echo "Found check run request with status ${check_status}, launching job ..."
         cat job.yaml \
-            | sed -r "s/\{NAME\}/$(uuidgen)/g; s/\{OWNER\}/${OWNER}/; s/\{REPO\}/${REPO}/; s/\{TOKEN\}/${PAT}/" \
+            | sed -r "s/\{NAME\}/$(uuidgen)/g; s/\{OWNER\}/${OWNER}/; s/\{REPO\}/${REPO}/" \
             | kubectl apply -f -
     else
         echo "Found check run request with status '${check_status}', nothing to do ..."

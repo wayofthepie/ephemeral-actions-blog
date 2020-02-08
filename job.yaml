@@ -8,6 +8,12 @@ spec:
       containers:
       - name: {NAME}
         image: wayofthepie/actions-image
-        args: ["{OWNER}", "{REPO}", "{TOKEN}", "{NAME}"]
+        args: ["{OWNER}", "{REPO}", "$(GITHUB_TOKEN)", "{NAME}"]
+        env:
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token
+              key: token
       restartPolicy: Never
   backoffLimit: 4
