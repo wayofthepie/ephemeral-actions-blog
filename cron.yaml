@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: actions-orchestrator
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: actions-orchestrator
+            image: wayofthepie/actions-orchestrator
+            args: ["$(GITHUB_TOKEN)", "{OWNER}", "{REPO}"]
+            env:
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-token
+                  key: token
+            imagePullPolicy: Always
+          restartPolicy: Never
+
