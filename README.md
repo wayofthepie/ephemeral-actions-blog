@@ -1,5 +1,5 @@
 # Github Actions Runner Image
-Code for the blog series [here](https://wayofthepie.github.io/series/tdd-and-rust-a-cli-for-decoding-certs/). To build this image:
+Code for the blog series [here](https://dev.to/wayofthepie/ephemeral-self-hosted-github-actions-runners-1h5m). To build this image:
 
 ```bash
 $ docker build -t actions-image .
